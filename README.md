@@ -11,3 +11,7 @@ endorsement, clearance, or proprietary access is claimed.
 ```bash
 python3 -m unittest discover -s tests -v
 ```
+
+## Quality honesty
+
+See [QUALITY.md](./QUALITY.md). This is a leveled **reference mechanism**, not a production system or employer affiliation claim.
