@@ -1,0 +1,1 @@
+"""Mission thread isolator."""
