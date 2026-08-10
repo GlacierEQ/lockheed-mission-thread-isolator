@@ -1,0 +1,60 @@
+{
+  "schema": "glaciereq.repo-canonical-position.v1",
+  "repository": "GlacierEQ/lockheed-mission-thread-isolator",
+  "position_state": "RESOLVED",
+  "role": "company_specific_specialist_system",
+  "company_target": "Lockheed Martin",
+  "canonical_identity": "mission-thread-isolator",
+  "unique_value": [
+    "each mission thread owns isolated mutable state under its own authority token; direct cross-thread reads do not share state",
+    "cross-thread transfer requires an explicit export grant with bounded lifetime rather than ambient shared authority",
+    "exports can be single-use, explicitly revoked, and are automatically invalidated when their source thread closes",
+    "export ownership and import rules fail closed on bad authority, expiry, reuse, unknown exports, self-import, closed sources, and non-owner revocation"
+  ],
+  "lineage_distinction": {
+    "GlacierEQ/lockheed-dual-key-actuator-fence": "owns dual-control side-effect authorization; complementary actuation boundary, not cross-thread state isolation",
+    "GlacierEQ/lockheed-evidence-binding-gateway": "owns content/version-bound evidence authorization; complementary evidence boundary, not mission-thread state isolation"
+  },
+  "capability_contribution": {
+    "family": "cross_thread_authority_isolation",
+    "extractable_mechanisms": [
+      "per-thread mutable-state isolation",
+      "authority-token-scoped thread access",
+      "explicit bounded export grants",
+      "single-use export consumption",
+      "owner-controlled export revocation",
+      "source-close export invalidation"
+    ],
+    "ownership": "This repository remains the owning Lockheed-specialist implementation of cross-thread authority isolation; capability extraction preserves repository identity and lineage."
+  },
+  "integration_policy": {
+    "preserve_repository_identity": true,
+    "preserve_lineage": true,
+    "presentation_independent": true,
+    "size_or_loc_not_dispositive": true,
+    "absorption_requires_functional_equivalence": true,
+    "absorption_requires_proof_equivalence": true
+  },
+  "relationships": [
+    {"repository": "GlacierEQ/lockheed-dual-key-actuator-fence", "kind": "COMPLEMENTARY_ACTUATION_AUTHORITY_COMPONENT", "integration_state": "NOT_CLAIMED"},
+    {"repository": "GlacierEQ/lockheed-evidence-binding-gateway", "kind": "COMPLEMENTARY_EVIDENCE_AUTHORIZATION_COMPONENT", "integration_state": "NOT_CLAIMED"}
+  ],
+  "next_evolution": "Add destination-bound and capability-attenuating exports, typed export schemas, content-addressed export provenance, and a tamper-evident transfer audit while preserving no-ambient-cross-thread-authority semantics.",
+  "evidence_refs": [
+    "README.md",
+    "ISSUE_CONTRACT.md",
+    "src/core.py",
+    "tests/test_core.py",
+    "tests/test_adversarial.py",
+    "machine/target-contract.json",
+    "machine/proof_receipt.json",
+    "machine/operability_receipt.json",
+    "machine/promotion_authority.json"
+  ],
+  "nonclaims": [
+    "no Lockheed Martin affiliation",
+    "no Lockheed Martin internal architecture claim",
+    "not a production mission-thread isolation runtime",
+    "repository relationships do not imply exercised integration"
+  ]
+}
