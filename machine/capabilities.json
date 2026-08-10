@@ -1,1 +1,22 @@
-{"capabilities": ["hyper-scaling"]}
+{
+  "schema": "glaciereq.repo-capabilities.v1",
+  "repository": "GlacierEQ/lockheed-mission-thread-isolator",
+  "capability_family": "cross_thread_authority_isolation",
+  "capabilities": [
+    "per-thread-mutable-state-isolation",
+    "authority-token-scoped-thread-access",
+    "explicit-bounded-export-grants",
+    "single-use-export-consumption",
+    "owner-controlled-export-revocation",
+    "source-close-export-invalidation",
+    "deterministic-export-identities"
+  ],
+  "evidence_refs": [
+    "src/core.py",
+    "tests/test_core.py",
+    "tests/test_adversarial.py",
+    "machine/proof_receipt.json",
+    "machine/canonical-position.json"
+  ],
+  "truth_boundary": "Repository-local mission-thread isolation mechanisms only. No Lockheed Martin adoption, production mission runtime deployment, or exercised integration with sibling repositories is implied."
+}
