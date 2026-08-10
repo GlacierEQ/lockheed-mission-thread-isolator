@@ -1,0 +1,11 @@
+{
+  "schema": "glaciereq.promotion-authority-grant.v1",
+  "repository": "GlacierEQ/lockheed-mission-thread-isolator",
+  "source_sha": "62d59dbb9cec6c74a63c6b32f547058aae351f2e420d1ea5d7fd781740b0a45f",
+  "proof_receipt_digest": "75d7d9753ebc117c69235eaa6571d049e007e4b207b3f2bb6e29b27c91adf586",
+  "not_after": 1788927149.234226,
+  "mac": "ce36097a46a6a7f872ddf529d937db9fe152817e1dc2bcf961552293499b50f4",
+  "issuer": "local_operator_promotion_authority",
+  "verified": true,
+  "secret_ref": "src/promotion_authority.py::LOCAL_OPERATOR_SECRET"
+}

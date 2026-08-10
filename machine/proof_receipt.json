@@ -1,0 +1,31 @@
+{
+  "schema": "glaciereq.proof-receipt.v1",
+  "repository": "GlacierEQ/lockheed-mission-thread-isolator",
+  "source_sha": "62d59dbb9cec6c74a63c6b32f547058aae351f2e420d1ea5d7fd781740b0a45f",
+  "proof_id": "elite-lockheed-mission-thread-isolator-1786335149",
+  "environment": {
+    "python": "/Users/kcbflux/job-app/excellence/.venv-elite/bin/python",
+    "PYTHONPATH": "/Users/kcbflux/job-app/repos/lockheed-mission-thread-isolator:/Users/kcbflux/job-app/repos/lockheed-mission-thread-isolator/src",
+    "entry": "unittest"
+  },
+  "tests": [
+    "/Users/kcbflux/job-app/excellence/.venv-elite/bin/python -m unittest discover -s tests -v (x2)"
+  ],
+  "adversarial_tests": [
+    "tests/test_adversarial.py"
+  ],
+  "runtime": {
+    "operate": "scripts/operate.py (x2)",
+    "dual_run_ok": true,
+    "proof_dual_run_ok": true
+  },
+  "result": "PASS",
+  "limitations": [
+    "not production deployed",
+    "reference implementation only"
+  ],
+  "timestamp": "2026-08-10T04:12Z",
+  "artifact_hashes": {
+    "operability_receipt": "d2149ae706fcdfe620206cc9a7a85425346ec2f79d956a90101bdf59ff42d1e2"
+  }
+}
