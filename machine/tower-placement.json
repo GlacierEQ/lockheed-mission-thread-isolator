@@ -1,0 +1,52 @@
+{
+  "schema": "glaciereq.tower-placement.v1",
+  "repository": "GlacierEQ/lockheed-mission-thread-isolator",
+  "evolution_cursor": "next:destination_bound_attenuating_exports_typed_schemas_content_addressed_provenance_tamper_evident_transfer_audit",
+  "tower_authority": {
+    "repository": "GlacierEQ/the-tower-of-babel",
+    "commit_sha": "717140acca8f7f56a2b45e78da94a1706a5dce3c",
+    "contract_path": "governance/evolution-placement-contract.v1.json",
+    "contract_blob_sha": "c009635ba4d126f9d23855367ea0d93ab7a9741d",
+    "registry_path": "registry/tower.yml",
+    "registry_blob_sha": "f43c2a434aa7d4ad5441a0fdbe8245cc07ed6fdf",
+    "technology_catalog_path": "generated/smithery.registry.json",
+    "technology_catalog_blob_sha": "9290f0fe88a4c4c1126005468c12aa6a62203cdd",
+    "quality_contract_path": "QUALITY_CONTRACT.md",
+    "quality_contract_blob_sha": "952c6d4dcd06bc832ff0d015923f88876ed404a2"
+  },
+  "decision": "EXPERIMENT",
+  "current_languages": ["python"],
+  "boundaries": [
+    {
+      "responsibility": "language-neutral typed contract for destination-bound attenuating export envelopes",
+      "decision": "ADD",
+      "incumbent_technology": "python",
+      "candidate_technology": "protobuf",
+      "activation_condition": "activate when an export crosses a mission-thread boundary and its destination, authority attenuation, expiry, content address, and schema version must be represented independently of the Python process",
+      "why_existing_boundary_is_insufficient": "the current Python ExportGrant is an in-process object and does not provide an evolvable language-neutral wire contract for cross-runtime verification",
+      "interface_contract": "a versioned Protobuf ExportEnvelope binds export ID, source thread, destination thread, key identity, content digest, authority scope, not-after time, single-use semantics, and schema version; Python remains the reference orchestrator and must round-trip shared fixtures without semantic loss",
+      "proof_tier": "B",
+      "parity_required": true,
+      "parity_contract": "shared deterministic fixtures must round-trip between the Python reference model and generated Protobuf representation with identical destination, attenuation, expiry, single-use, and content-digest fields"
+    },
+    {
+      "responsibility": "independently replayable content-addressed provenance and tamper-evident transfer verification",
+      "decision": "EXPERIMENT",
+      "incumbent_technology": "python",
+      "candidate_technology": "rust",
+      "activation_condition": "activate when a destination-bound export is emitted and an isolated verifier must validate canonical bytes, content address, destination binding, attenuation, expiry, and transfer-chain integrity outside the mutable Python thread-state process",
+      "why_existing_boundary_is_insufficient": "the Python process owns mutable mission-thread orchestration; the provenance verifier should be a separately executable native boundary with explicit byte ownership and no ambient access to mission-thread mutable state",
+      "interface_contract": "Rust consumes the canonical Protobuf export envelope plus previous receipt hash and returns a deterministic verification receipt containing envelope digest, provenance-chain digest, decision, and bounded refusal reason; it cannot mutate thread state or mint export authority",
+      "proof_tier": "B",
+      "parity_required": true,
+      "parity_contract": "Python reference verification and Rust verification must agree on allow/refuse, canonical envelope digest, destination binding, expiry, attenuation, and tamper cases across shared fixtures; divergence fails the evolution gate"
+    }
+  ],
+  "diversity_value": "Protobuf owns the cross-language contract boundary and Rust owns an isolated native provenance-verification boundary, while Python keeps mission-thread orchestration. The added technologies have distinct responsibilities and do not duplicate Python merely to increase language count.",
+  "nonclaims": [
+    "Tower placement is bound to the prospective Tower governance branch semantic blobs and becomes canonical only when those same authority surfaces are merged to Tower main",
+    "Rust is an experiment until its declared Tier B parity and adversarial proof passes; the current Python implementation remains authoritative",
+    "Protobuf placement does not itself prove generated-code integration or wire compatibility until the evolution implementation and tests pass",
+    "no Lockheed Martin affiliation, adoption, production deployment, proprietary access, or internal architecture knowledge is claimed"
+  ]
+}
